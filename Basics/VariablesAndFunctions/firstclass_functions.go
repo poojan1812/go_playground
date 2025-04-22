@@ -75,4 +75,29 @@ f()
 
 // Anonymous functions are useful when we want to create functions on the fly
 // Like returning a function form another function - declaring and returning a named function is also possible, but anonymous functions becomes handy
-//
+
+// FUNCTION AS AN ARGUMENT
+/*
+type kelvin float64
+type sensor func() kelvin
+
+func realSensor(){
+  <Function logic here>
+}
+
+func checkTemp(s sensor) sensor{
+return func() kelvin{
+  return s()
+}
+}
+
+func main(){
+sensor := checkTemp(realSensor)
+fmt.Println(sensor())
+}
+
+
+*/
+
+// Closure references 's' in above function checkTemp. Even after checkTemp returns s, it captures variable from its surrounding scope.
+// On every subsequent function call, it retrives the current value of the variable.
