@@ -55,6 +55,22 @@ func biggerSlice() {
 	// With append, the slice can grow dynamically without defining the range
 
 	// Length - Number of elements visible in a slice
-	// Capacity - Total size of the underlying array
+	// Capacity - Total size of the underlying array - cap built-in function to check capacity
+
+	// If the underlying array does not have enough capacity and we still perform append operation - it allocates another array of twice the size.
+	// i.e - slice with 5 length 5 capacity --> append 1 --> new array created with 6 length 10 capacity
+
+	// Create slice using make - preallocate capacity to avoid unnecessary array expansion
+	// Here, a slice (and underlying array) is created with capacity 10 and length 0.
+	paymentBanks := make([]string, 0, 5)
+	paymentBanks = append(paymentBanks, "PayTM", "GooglePay", "RazorPay")
+
+	// Use ellipses ... with the last parameter to declare a variadic function that accepts variable number of arguments
+	/*
+	 func terraform (prefix string, worlds ...string) []string {
+	 }
+	*/
+
+	// A slice can be passed to a function using ellipses - newPlanets := terraform("New", planets...)
 
 }
