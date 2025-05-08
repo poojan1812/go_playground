@@ -3,6 +3,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -34,14 +35,36 @@ func main() {
 
 	// COMPOSITE LITERAL DECLARATION
 	type time struct {
-		hours, minutes float64
+		Hours   float64 `json:"HoursJson"`
+		Minutes float64
 	}
 
-	timenow := time{hours: 5.0, minutes: 30.0}
-	fmt.Println(timenow)
+	timenow := time{5.0, 30.0}
 
 	// Structures are copied. Changes in one does not apply to other struct. (Similar to arrays)
 
-	// Slice of structure -
+	// Slice of structure - Create a slice where each value is a structure of key value pair.
+	type student struct {
+		Name    string
+		ID      float64
+		Subject string
+	}
+
+	pricing := []student{
+		{Name: "ABC", ID: 1.0, Subject: "Science"},
+		{Name: "DEF", ID: 2.0, Subject: "Mathematics"},
+		{Name: "GHI", ID: 3.0, Subject: "Cyber Security"},
+	}
+	fmt.Println(pricing)
+
+	// JSON is a standard data format and commonly used for storing and sharing data in a structured way.
+	// JSON Marshal function encodes the given data, and returns encoded version with the error (if any)
+
+	// JSON module in GO expects the initial uppercase and CamelCase for multi-word variables or types. (Fields must be exported for the JSON package to see them) i.e line 37 type declaration.
+
+	// Struct Tags: Custom JSON output can be set by declaring the respective key for JSON in the struct declaration. i.e line 37 type declaration.
+	encoded, error := json.Marshal(timenow)
+	fmt.Println(timenow)
+	fmt.Println(string(encoded), error)
 
 }
